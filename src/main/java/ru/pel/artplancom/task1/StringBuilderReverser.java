@@ -6,9 +6,14 @@ public class StringBuilderReverser implements StringReverser {
      * но зато методы StringBuilder могут некорректно отрабатывать в многопоточном приложении.
      *
      * @param str исходная строка
-     * @return развернутая строка
+     * @return развернутая строка или пустая, если передан null
      */
     public String reverse(String str) {
-        return new StringBuilder(str).reverse().toString();
+        String result;
+        if (str == null) {
+            result = "";
+        } else
+            result = new StringBuilder(str).reverse().toString();
+        return result;
     }
 }
