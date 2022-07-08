@@ -6,15 +6,27 @@ public class Main {
     public static void main(String[] args) {
         System.out.print("Введите строку: ");
         String str = new Scanner(System.in).nextLine();
-//        StringReverser reverser = new StringBuilderReverser();
-        StringReverser reverser = new StreamReverser();
+        StringReverser reverser = new StringBuilderReverser();
+
+        System.out.println(str);
+        System.out.println(reverser.reverse(str));
 
         long startTime = System.nanoTime();
-//        StringReverser sr = str1 -> new StringBuilder(str).reverse().toString();
-        String reversedStr = reverser.reverse(str);
-        long elapsedNanos = System.nanoTime() - startTime;
+        for (int i = 0; i < 1000; i++) {
+            reverser.reverse(str);
+        }
+        System.out.println(System.nanoTime() - startTime);
 
-        System.out.println("Результат работы:");
-        System.out.printf("%s %s %d", str, reversedStr, elapsedNanos);
+        startTime = System.nanoTime();
+        for (int i = 0; i < 10_000; i++) {
+            reverser.reverse(str);
+        }
+        System.out.println(System.nanoTime() - startTime);
+
+        startTime = System.nanoTime();
+        for (int i = 0; i < 100_000; i++) {
+            reverser.reverse(str);
+        }
+        System.out.println(System.nanoTime() - startTime);
     }
 }
